@@ -81,8 +81,6 @@ function speedInput_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of speedInput as text
 %        str2double(get(hObject,'String')) returns contents of speedInput as a double
-input = get(hObject,'String');
-display(input);
 
 
 % --- Executes during object creation, after setting all properties.
@@ -218,6 +216,24 @@ function calculateButton_Callback(hObject, eventdata, handles)
 % hObject    handle to calculateButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+%get initial speed
+initialSpeed = str2double(get(handles.speedInput, 'string'));
+display(initialSpeed);
+%get initial angle
+angleOfMotion = str2double(get(handles.angleInput, 'string'));
+display(angleOfMotion);
+%get coefficient of restitution
+coefficientOfRestitution = str2double(get(handles.corInput, 'string'));
+display(coefficientOfRestitution);
+%get distance of wall from starting point
+wallDistance = str2double(get(handles.wDistanceInput, 'string'));
+display(wallDistance);
+%get height of wall
+wallHeight = str2double(get(handles.wHeightInput, 'string'));
+display(wallHeight);
+%get distance of wall from starting point
+ballStartingHeight = str2double(get(handles.startingHeightInput, 'string'));
+display(ballStartingHeight);
 
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
