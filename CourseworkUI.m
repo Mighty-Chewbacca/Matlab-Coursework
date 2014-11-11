@@ -218,22 +218,31 @@ function calculateButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 %get initial speed
 initialSpeed = str2double(get(handles.speedInput, 'string'));
-display(initialSpeed);
+%display(initialSpeed);
+assignin('base', 'initialSpeed', initialSpeed);
 %get initial angle
 angleOfMotion = str2double(get(handles.angleInput, 'string'));
-display(angleOfMotion);
+%display(angleOfMotion);
+assignin('base', 'angleOfMotion', angleOfMotion);
 %get coefficient of restitution
 coefficientOfRestitution = str2double(get(handles.corInput, 'string'));
-display(coefficientOfRestitution);
+%display(coefficientOfRestitution);
+assignin('base', 'coefficientOfRestitution', coefficientOfRestitution);
 %get distance of wall from starting point
 wallDistance = str2double(get(handles.wDistanceInput, 'string'));
-display(wallDistance);
+%display(wallDistance);
+assignin('base', 'wallDistance', wallDistance);
 %get height of wall
 wallHeight = str2double(get(handles.wHeightInput, 'string'));
-display(wallHeight);
+%display(wallHeight);
+assignin('base', 'wallHeight', wallHeight);
 %get distance of wall from starting point
 ballStartingHeight = str2double(get(handles.startingHeightInput, 'string'));
-display(ballStartingHeight);
+%display(ballStartingHeight);
+assignin('base', 'ballStartingHeight', ballStartingHeight);
+
+% now run the calculation script
+Calculate
 
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.

@@ -3,3 +3,5 @@
 % seperate variables from there.
 % these variables can then easily be used inside scripts like this!
 % http://www.mathworks.co.uk/help/matlab/creating_guis/add-code-for-components-in-callbacks.html#f10-1001464
+
+display('hello!!!!');
