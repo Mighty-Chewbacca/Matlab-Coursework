@@ -22,7 +22,7 @@ function varargout = CourseworkUI(varargin)
 
 % Edit the above text to modify the response to help CourseworkUI
 
-% Last Modified by GUIDE v2.5 10-Nov-2014 22:16:26
+% Last Modified by GUIDE v2.5 26-Nov-2014 23:32:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -240,6 +240,18 @@ assignin('base', 'wallHeight', wallHeight);
 ballStartingHeight = str2double(get(handles.startingHeightInput, 'string'));
 %display(ballStartingHeight);
 assignin('base', 'ballStartingHeight', ballStartingHeight);
+%get the size of the ball
+ballRadius = str2double(get(handles.ballRadiusInput, 'string'));
+%display(ballStartingHeight);
+assignin('base', 'ballRadius', ballRadius);
+%get mass of ball
+ballMass = str2double(get(handles.ballMassInput, 'string'));
+%display(ballStartingHeight);
+assignin('base', 'ballMass', ballMass);
+%get air resistance value
+airResistance = str2double(get(handles.airResInput, 'string'));
+%display(ballStartingHeight);
+assignin('base', 'airResistance', airResistance);
 
 % now run the calculation script
 Calculate
@@ -251,3 +263,80 @@ function speedInput_ButtonDownFcn(hObject, eventdata, handles)
 % hObject    handle to speedInput (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+
+function ballRadiusInput_Callback(hObject, eventdata, handles)
+% hObject    handle to ballRadiusInput (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of ballRadiusInput as text
+%        str2double(get(hObject,'String')) returns contents of ballRadiusInput as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function ballRadiusInput_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ballRadiusInput (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- If Enable == 'on', executes on mouse press in 5 pixel border.
+% --- Otherwise, executes on mouse press in 5 pixel border or over calculateButton.
+function calculateButton_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to calculateButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+function ballMassInput_Callback(hObject, eventdata, handles)
+% hObject    handle to ballMassInput (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of ballMassInput as text
+%        str2double(get(hObject,'String')) returns contents of ballMassInput as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function ballMassInput_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ballMassInput (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function airResInput_Callback(hObject, eventdata, handles)
+% hObject    handle to airResInput (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of airResInput as text
+%        str2double(get(hObject,'String')) returns contents of airResInput as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function airResInput_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to airResInput (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
