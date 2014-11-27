@@ -43,6 +43,7 @@ currentY = initialY;
 
 xPos = initialX;
 yPos = initialY;
+
 %tell it to draw to axes on ui
 axes(handles.ballPlot);
 
@@ -68,7 +69,7 @@ disp(time);
 coordMatrix = [xPos, yPos];
 viscircles(coordMatrix,ballRadius);
 
-pause(0.05);
+pause(0.025);
 
 if (xPos < wallHeight - ballRadius)
 cla(handles.ballPlot);
