@@ -45,9 +45,8 @@ xPos = initialX;
 yPos = initialY;
 %tell it to draw to axes on ui
 axes(handles.ballPlot);
-hold on
 
-while(xPos < WallHeight)
+while(xPos < wallHeight)
     
 % calculate the x positions using the current speed
 xPos = currentX + (timeStep * previousSpeedX);
@@ -62,12 +61,16 @@ currentY = yPos;
 previousSpeedX = nextSpeedX;
 previousSpeedY = nextSpeedY;
 
-%disp(xPos);
-%disp(yPos);
 time = time + timeStep;
 disp(time);
 
-plot (xPos, yPos);
+%plot (xPos, yPos);
+coordMatrix = [xPos, yPos];
+viscircles(coordMatrix,ballRadius);
+
+pause(0.05);
+
+cla(handles.ballPlot);
 
 if (yPos < 0)
     disp('below ground');
