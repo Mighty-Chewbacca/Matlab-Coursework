@@ -87,8 +87,11 @@ end
 if (xPos >= wallDistance - ballRadius)
 disp('the wall has been hit by the ball at');
 disp(time);
-disp(' Seconds');
+disp('seconds');
 disp('Now do some calculations to make it bounce!');
+
+disp(xPos); % will display the final location on the x axis of the ball before it hit the wall
+disp(yPos); % will display the final location on the y axis of the ball before it hit the wall
 end
 grid on;
 
