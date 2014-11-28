@@ -83,5 +83,12 @@ if (yPos < 0)
 end
 
 end
+
+if (xPos >= wallDistance - ballRadius)
+disp('the wall has been hit by the ball at');
+disp(time);
+disp(' Seconds');
+disp('Now do some calculations to make it bounce!');
+end
 grid on;
 
