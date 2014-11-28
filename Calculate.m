@@ -47,7 +47,7 @@ yPos = initialY;
 %tell it to draw to axes on ui
 axes(handles.ballPlot);
 
-while(xPos < wallHeight - ballRadius)
+while(xPos < wallDistance - ballRadius)
     
 % calculate the x positions using the current speed
 xPos = currentX + (timeStep * previousSpeedX);
@@ -68,10 +68,12 @@ disp(time);
 %plot (xPos, yPos);
 coordMatrix = [xPos, yPos];
 viscircles(coordMatrix,ballRadius);
+line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
+line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
 
 pause(0.025);
 
-if (xPos < wallHeight - ballRadius)
+if (xPos < wallDistance - ballRadius)
 cla(handles.ballPlot);
 end
 
