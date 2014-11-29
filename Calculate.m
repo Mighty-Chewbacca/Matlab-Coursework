@@ -17,12 +17,14 @@
 % ballMass
 % airResistance
 
+hasHitWall = false;
+
 initialX = ballRadius;
 initialY = ballRadius + ballStartingHeight;
 
 airRes = airResistance;
 timeStep = 0.01;
-mg = ballMass;
+mg = ballMass * 9.81;
 time = 0;
 
 initialMS = initialSpeed;
@@ -47,51 +49,93 @@ yPos = initialY;
 %tell it to draw to axes on ui
 axes(handles.ballPlot);
 
+% main statement for the ball moving in the first place, need to add bool
+% and check if wall has been hit yet
 while(xPos < wallDistance - ballRadius)
     
-% calculate the x positions using the current speed
-xPos = currentX + (timeStep * previousSpeedX);
-yPos = currentY + (timeStep * previousSpeedY);
+    % calculate the x positions using the current speed
+    xPos = currentX + (timeStep * previousSpeedX);
+    yPos = currentY + (timeStep * previousSpeedY);
 
-nextSpeedX = previousSpeedX + timeStep * (-airRes * previousSpeedX);
-nextSpeedY = previousSpeedY + timeStep * (-airRes * previousSpeedY -mg);
+    nextSpeedX = previousSpeedX + timeStep * (-airRes * previousSpeedX);
+    nextSpeedY = previousSpeedY + timeStep * (-airRes * previousSpeedY -mg);
 
-currentX = xPos;
-currentY = yPos;
+    currentX = xPos;
+    currentY = yPos;
 
-previousSpeedX = nextSpeedX;
-previousSpeedY = nextSpeedY;
+    previousSpeedX = nextSpeedX;
+    previousSpeedY = nextSpeedY;
 
-time = time + timeStep;
-disp(time);
+    time = time + timeStep;
+    disp(time);
 
-%plot (xPos, yPos);
-coordMatrix = [xPos, yPos];
-viscircles(coordMatrix,ballRadius);
-line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
-line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
+    %plot (xPos, yPos);
+    coordMatrix = [xPos, yPos];
+    viscircles(coordMatrix,ballRadius);
+    line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
+    line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
 
-pause(0.025);
+    pause(0.005);
 
-if (xPos < wallDistance - ballRadius)
-cla(handles.ballPlot);
+    if (xPos < wallDistance - ballRadius)
+        cla(handles.ballPlot);
+    end
+
 end
 
+% if the ball falls below the floor
 if (yPos < 0)
     disp('below ground');
     break
 end
 
-end
-
 if (xPos >= wallDistance - ballRadius)
-disp('the wall has been hit by the ball at');
-disp(time);
-disp('seconds');
-disp('Now do some calculations to make it bounce!');
+    disp('the wall has been hit by the ball at');
+    disp(time);
+    disp('seconds');
+    disp('Now do some calculations to make it bounce!');
+    
+    hasHitWall = true;
 
-disp(xPos); % will display the final location on the x axis of the ball before it hit the wall
-disp(yPos); % will display the final location on the y axis of the ball before it hit the wall
+    disp(xPos); % will display the final location on the x axis of the ball before it hit the wall
+    disp(yPos); % will display the final location on the y axis of the ball before it hit the wall
+
+    % apply coefficient to get new velocities
+    bounceBackSpeedX = -coefficientOfRestitution*(previousSpeedX);
+    bounceBackSpeedY = -coefficientOfRestitution*(previousSpeedY);
 end
+
+    while (yPos > ballRadius && hasHitWall == true)
+        
+    % calculate the x positions using the current speed
+    xPos = currentX + (timeStep * bounceBackSpeedX);
+    yPos = currentY + (timeStep * bounceBackSpeedY);
+
+    nextSpeedX = bounceBackSpeedX + timeStep * (-airRes * bounceBackSpeedX);
+    nextSpeedY = bounceBackSpeedY + timeStep * (-airRes * bounceBackSpeedY -mg);
+    
+    currentX = xPos;
+    currentY = yPos;
+
+    bounceBackSpeedX = nextSpeedX;
+    bounceBackSpeedY = nextSpeedY;
+
+    time = time + timeStep;
+    disp(time);
+    
+    %plot (xPos, yPos);
+    coordMatrix = [xPos, yPos];
+    viscircles(coordMatrix,ballRadius);
+    line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
+    line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
+
+    pause(0.005);
+
+    if (xPos < wallDistance - ballRadius)
+        cla(handles.ballPlot);
+    end
+        
+    end
+    
 grid on;
 
