@@ -17,7 +17,7 @@
 % ballMass
 % airResistance
 
-%output boxes for data
+%handles to the output text data
 %XPWReturn
 %YPWReturn
 %TWReturn
@@ -92,13 +92,12 @@ while(xPos < wallDistance - ballRadius)
     if (xPos < wallDistance - ballRadius)
         cla(handles.ballPlot);
     end
+    
+    if (yPos <= 0)
+        disp ('hit ground');
+        break
+    end
 
-end
-
-% if the ball falls below the floor
-if (yPos < 0)
-    disp('below ground');
-    break
 end
 
 if (xPos >= wallDistance - ballRadius)
@@ -117,8 +116,10 @@ if (xPos >= wallDistance - ballRadius)
     bounceBackSpeedY = -coefficientOfRestitution*(previousSpeedY);
 end
 
-    while (yPos > ballRadius && hasHitWall == true)
-        
+while (yPos > ballRadius && hasHitWall == true)
+    
+    cla(handles.ballPlot);
+    
     % calculate the x positions using the current speed
     xPos = currentX + (timeStep * bounceBackSpeedX);
     yPos = currentY + (timeStep * bounceBackSpeedY);
@@ -141,13 +142,15 @@ end
     line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
     line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
 
-    pause(0.005);
-
-    if (xPos < wallDistance - ballRadius)
-        cla(handles.ballPlot);
+    pause(0.01);
+    
+    % if the ball falls below the floor
+    if (yPos <= 0)
+        disp('below ground');
+        break
     end
         
-    end
+end
     
 grid on;
 
