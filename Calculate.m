@@ -17,7 +17,19 @@
 % ballMass
 % airResistance
 
+%output boxes for data
+%XPWReturn
+%YPWReturn
+%TWReturn
+%XPGReturn
+%YPGReturn
+%TGReturn
+%XCPReturn
+%YCPReturn
+%CTReturn
+
 hasHitWall = false;
+hasHitGround = false;
 
 initialX = ballRadius;
 initialY = ballRadius + ballStartingHeight;
