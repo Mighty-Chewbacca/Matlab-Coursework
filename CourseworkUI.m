@@ -72,17 +72,6 @@ function varargout = CourseworkUI_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-
-
-function speedInput_Callback(hObject, eventdata, handles)
-% hObject    handle to speedInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of speedInput as text
-%        str2double(get(hObject,'String')) returns contents of speedInput as a double
-
-
 % --- Executes during object creation, after setting all properties.
 function speedInput_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to speedInput (see GCBO)
@@ -95,17 +84,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
-function angleInput_Callback(hObject, eventdata, handles)
-% hObject    handle to angleInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of angleInput as text
-%        str2double(get(hObject,'String')) returns contents of angleInput as a double
-
-
 % --- Executes during object creation, after setting all properties.
 function angleInput_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to angleInput (see GCBO)
@@ -117,17 +95,6 @@ function angleInput_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
-function corInput_Callback(hObject, eventdata, handles)
-% hObject    handle to corInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of corInput as text
-%        str2double(get(hObject,'String')) returns contents of corInput as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function corInput_CreateFcn(hObject, eventdata, handles)
@@ -142,16 +109,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
-function wDistanceInput_Callback(hObject, eventdata, handles)
-% hObject    handle to wDistanceInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of wDistanceInput as text
-%        str2double(get(hObject,'String')) returns contents of wDistanceInput as a double
-
-
 % --- Executes during object creation, after setting all properties.
 function wDistanceInput_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to wDistanceInput (see GCBO)
@@ -164,17 +121,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
-function wHeightInput_Callback(hObject, eventdata, handles)
-% hObject    handle to wHeightInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of wHeightInput as text
-%        str2double(get(hObject,'String')) returns contents of wHeightInput as a double
-
-
 % --- Executes during object creation, after setting all properties.
 function wHeightInput_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to wHeightInput (see GCBO)
@@ -186,17 +132,6 @@ function wHeightInput_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
-function startingHeightInput_Callback(hObject, eventdata, handles)
-% hObject    handle to startingHeightInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of startingHeightInput as text
-%        str2double(get(hObject,'String')) returns contents of startingHeightInput as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function startingHeightInput_CreateFcn(hObject, eventdata, handles)
@@ -248,25 +183,6 @@ assignin('base', 'airResistance', airResistance);
 % now run the calculation script
 Calculate
 
-
-% --- If Enable == 'on', executes on mouse press in 5 pixel border.
-% --- Otherwise, executes on mouse press in 5 pixel border or over speedInput.
-function speedInput_ButtonDownFcn(hObject, eventdata, handles)
-% hObject    handle to speedInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
-
-function ballRadiusInput_Callback(hObject, eventdata, handles)
-% hObject    handle to ballRadiusInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of ballRadiusInput as text
-%        str2double(get(hObject,'String')) returns contents of ballRadiusInput as a double
-
-
 % --- Executes during object creation, after setting all properties.
 function ballRadiusInput_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to ballRadiusInput (see GCBO)
@@ -279,25 +195,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- If Enable == 'on', executes on mouse press in 5 pixel border.
-% --- Otherwise, executes on mouse press in 5 pixel border or over calculateButton.
-function calculateButton_ButtonDownFcn(hObject, eventdata, handles)
-% hObject    handle to calculateButton (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
-
-function ballMassInput_Callback(hObject, eventdata, handles)
-% hObject    handle to ballMassInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of ballMassInput as text
-%        str2double(get(hObject,'String')) returns contents of ballMassInput as a double
-
-
 % --- Executes during object creation, after setting all properties.
 function ballMassInput_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to ballMassInput (see GCBO)
@@ -309,17 +206,6 @@ function ballMassInput_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
-function airResInput_Callback(hObject, eventdata, handles)
-% hObject    handle to airResInput (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of airResInput as text
-%        str2double(get(hObject,'String')) returns contents of airResInput as a double
-
 
 % --- Executes during object creation, after setting all properties.
 function airResInput_CreateFcn(hObject, eventdata, handles)
