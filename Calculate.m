@@ -68,84 +68,100 @@ axes(handles.ballPlot);
 grid on;
 
 while(isProgramRunning == 1) % main simulation loop, will exit when simulation is over -AM
-   
-    if(isCalculating == 1)
-        % calculate the x positions using the current speed
-        xPos = currentX + (timeStep * previousSpeedX);
-        yPos = currentY + (timeStep * previousSpeedY);
-
-        nextSpeedX = previousSpeedX + timeStep * (-airRes * previousSpeedX);
-        nextSpeedY = previousSpeedY + timeStep * (-airRes * previousSpeedY -mg);
-
-        currentX = xPos;
-        currentY = yPos;
-
-        previousSpeedX = nextSpeedX;
-        previousSpeedY = nextSpeedY;
-
-        time = time + timeStep;
-
-        % code to update the current value of the static text that will display
-        % the outputs. -AM
-        set(handles.CTReturn, 'String', num2str(time));
-        set(handles.CXPReturn, 'String', num2str(currentX));
-        set(handles.CYPReturn, 'String', num2str(currentY));
-        set(handles.CXVReturn, 'String', num2str(previousSpeedX));
-        set(handles.CYVReturn, 'String', num2str(previousSpeedY));
-
-        %plot (xPos, yPos);
-        coordMatrix = [xPos, yPos];
-        viscircles(coordMatrix,ballRadius);
-        line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
-        line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
-
-        pause(0.0001);
-        
-        if(currentX >= wallDistance - ballRadius && currentY <= wallHeight - ballRadius && hasHitWall == 0)
-            % we have hit the wall
-            % now need to run coefficient calculations
-            
-            disp('the wall has been hit by the ball at');
-            disp(time);
-            disp('seconds');
-            disp('Now do some calculations to make it bounce!');
-            
-            % code to update the wall values  of the static text that will display
-            % the outputs. -AM
-            set(handles.TWReturn, 'String', num2str(time));
-            set(handles.XPWReturn, 'String', num2str(currentX));
-            set(handles.YPWReturn, 'String', num2str(currentY));
-            set(handles.XVWBReturn, 'String', num2str(previousSpeedX));
-            set(handles.YVWBReturn, 'String', num2str(previousSpeedY));
-            
-            % apply coefficient to get new velocities
-            previousSpeedX = -coefficientOfRestitution*(previousSpeedX);
-            previousSpeedY = -coefficientOfRestitution*(previousSpeedY);
-            
-            set(handles.XVWAReturn, 'String', num2str(previousSpeedX));
-            set(handles.YVWAReturn, 'String', num2str(previousSpeedY));
-            
-            hasHitWall = 1;
-        end
-        
-        if(currentY <= ballRadius)
-            % ball has now hit the ground           
-            % code to update the wall values  of the static text that will display
-            % the outputs. -AM (used to be code in here to display straight to command line, redundant now)
-            set(handles.TGReturn, 'String', num2str(time));
-            set(handles.XPGReturn, 'String', num2str(currentX));
-            set(handles.YPGReturn, 'String', num2str(currentY));
-            set(handles.XVGReturn, 'String', num2str(previousSpeedX));
-            set(handles.YVGReturn, 'String', num2str(previousSpeedY));
-            
-            isCalculating = 0; % should stop the calculations from continuing when hitting the ground
-            break;
-            
-        end
-        
-        cla(handles.ballPlot);
-        
-    end
     
+    % calculate the x positions using the current speed
+    xPos = currentX + (timeStep * previousSpeedX);
+    yPos = currentY + (timeStep * previousSpeedY);
+
+    nextSpeedX = previousSpeedX + timeStep * (-airRes * previousSpeedX);
+    nextSpeedY = previousSpeedY + timeStep * (-airRes * previousSpeedY -mg);
+
+    currentX = xPos;
+    currentY = yPos;
+
+    previousSpeedX = nextSpeedX;
+    previousSpeedY = nextSpeedY;
+
+    time = time + timeStep;
+
+    % code to update the current value of the static text that will display
+    % the outputs. -AM
+    set(handles.CTReturn, 'String', num2str(time));
+    set(handles.CXPReturn, 'String', num2str(currentX));
+    set(handles.CYPReturn, 'String', num2str(currentY));
+    set(handles.CXVReturn, 'String', num2str(previousSpeedX));
+    set(handles.CYVReturn, 'String', num2str(previousSpeedY));
+
+    %plot (xPos, yPos);
+    coordMatrix = [xPos, yPos];
+    viscircles(coordMatrix,ballRadius);
+    line([-1 wallDistance], [0 0], 'LineWidth', 4, 'color', 'r'); % floor line
+    line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
+
+    pause(0.0001);
+
+    if(currentX >= wallDistance - ballRadius && currentY <= wallHeight - ballRadius && hasHitWall == 0)
+        % we have hit the wall
+        % now need to run coefficient calculations
+
+        disp('the wall has been hit by the ball at');
+        disp(time);
+        disp('seconds');
+        disp('Now do some calculations to make it bounce!');
+
+        % code to update the wall values  of the static text that will display
+        % the outputs. -AM
+        set(handles.TWReturn, 'String', num2str(time));
+        set(handles.XPWReturn, 'String', num2str(currentX));
+        set(handles.YPWReturn, 'String', num2str(currentY));
+        set(handles.XVWBReturn, 'String', num2str(previousSpeedX));
+        set(handles.YVWBReturn, 'String', num2str(previousSpeedY));
+
+        % apply coefficient to get new velocities
+        previousSpeedX = -coefficientOfRestitution*(previousSpeedX);
+        previousSpeedY = -coefficientOfRestitution*(previousSpeedY);
+
+        set(handles.XVWAReturn, 'String', num2str(previousSpeedX));
+        set(handles.YVWAReturn, 'String', num2str(previousSpeedY));
+
+        hasHitWall = 1;
+    end
+
+    if(currentX >= wallDistance - ballRadius && currentY > wallHeight - ballRadius)
+        errorBox = msgbox('The ball has flown over the wall!','Out of Bounds');
+        
+        set(handles.TGReturn, 'String', 'N/A');
+        set(handles.XPGReturn, 'String', 'N/A');
+        set(handles.YPGReturn, 'String', 'N/A');
+        set(handles.XVGReturn, 'String', 'N/A');
+        set(handles.YVGReturn, 'String', 'N/A');
+        set(handles.XVWAReturn, 'String', 'N/A');
+        set(handles.YVWAReturn, 'String', 'N/A');
+        set(handles.TWReturn, 'String', 'N/A');
+        set(handles.XPWReturn, 'String', 'N/A');
+        set(handles.YPWReturn, 'String', 'N/A');
+        set(handles.XVWBReturn, 'String', 'N/A');
+        set(handles.YVWBReturn, 'String', 'N/A');
+        
+        isProgramRunning = 0; % variable to tell is program running -AM
+        break;
+    end
+
+    if(currentY <= ballRadius)
+        % ball has now hit the ground           
+        % code to update the wall values  of the static text that will display
+        % the outputs. -AM (used to be code in here to display straight to command line, redundant now)
+        set(handles.TGReturn, 'String', num2str(time));
+        set(handles.XPGReturn, 'String', num2str(currentX));
+        set(handles.YPGReturn, 'String', num2str(currentY));
+        set(handles.XVGReturn, 'String', num2str(previousSpeedX));
+        set(handles.YVGReturn, 'String', num2str(previousSpeedY));
+
+        isProgramRunning = 0; % should stop the calculations from continuing when hitting the ground
+        break;
+
+    end
+
+    cla(handles.ballPlot);    
 end
 
