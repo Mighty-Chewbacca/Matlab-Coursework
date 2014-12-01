@@ -22,7 +22,7 @@ function varargout = CourseworkUI(varargin)
 
 % Edit the above text to modify the response to help CourseworkUI
 
-% Last Modified by GUIDE v2.5 01-Dec-2014 13:53:43
+% Last Modified by GUIDE v2.5 26-Nov-2014 23:32:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -151,35 +151,43 @@ function calculateButton_Callback(hObject, eventdata, handles)
 % hObject    handle to calculateButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-% message box code from matlab documentation - h = msgbox(Message,Title)
 %get initial speed
 initialSpeed = str2double(get(handles.speedInput, 'string'));
+%display(initialSpeed);
 assignin('base', 'initialSpeed', initialSpeed);
 %get initial angle
 angleOfMotion = str2double(get(handles.angleInput, 'string'));
+%display(angleOfMotion);
 assignin('base', 'angleOfMotion', angleOfMotion);
 %get coefficient of restitution
 coefficientOfRestitution = str2double(get(handles.corInput, 'string'));
+%display(coefficientOfRestitution);
 assignin('base', 'coefficientOfRestitution', coefficientOfRestitution);
 %get distance of wall from starting point
 wallDistance = str2double(get(handles.wDistanceInput, 'string'));
+%display(wallDistance);
 assignin('base', 'wallDistance', wallDistance);
 %get height of wall
 wallHeight = str2double(get(handles.wHeightInput, 'string'));
+%display(wallHeight);
 assignin('base', 'wallHeight', wallHeight);
 %get distance of wall from starting point
 ballStartingHeight = str2double(get(handles.startingHeightInput, 'string'));
+%display(ballStartingHeight);
 assignin('base', 'ballStartingHeight', ballStartingHeight);
 %get the size of the ball
 ballRadius = str2double(get(handles.ballRadiusInput, 'string'));
+%display(ballStartingHeight);
 assignin('base', 'ballRadius', ballRadius);
 %get mass of ball
 ballMass = str2double(get(handles.ballMassInput, 'string'));
+%display(ballStartingHeight);
 assignin('base', 'ballMass', ballMass);
 %get air resistance value
 airResistance = str2double(get(handles.airResInput, 'string'));
+%display(ballStartingHeight);
 assignin('base', 'airResistance', airResistance);
+
 % now run the calculation script
 Calculate
 
@@ -218,29 +226,3 @@ function airResInput_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-% --- Executes on button press in ClearValsButton.
-function ClearValsButton_Callback(hObject, eventdata, handles)
-% hObject    handle to ClearValsButton (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-set(handles.speedInput, 'String', '');
-set(handles.angleInput, 'String', '');
-set(handles.corInput, 'String', '');
-set(handles.wDistanceInput, 'String', '');
-set(handles.wHeightInput, 'String', '');
-set(handles.startingHeightInput, 'String', '');
-set(handles.ballRadiusInput, 'String', '');
-set(handles.ballMassInput, 'String', '');
-set(handles.airResInput, 'String', '');
-
-
-
-
-
-
-
-
-
