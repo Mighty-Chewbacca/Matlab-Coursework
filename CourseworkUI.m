@@ -22,7 +22,7 @@ function varargout = CourseworkUI(varargin)
 
 % Edit the above text to modify the response to help CourseworkUI
 
-% Last Modified by GUIDE v2.5 26-Nov-2014 23:32:43
+% Last Modified by GUIDE v2.5 01-Dec-2014 20:40:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -226,3 +226,20 @@ function airResInput_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in inputClearButton.
+function inputClearButton_Callback(hObject, eventdata, handles)
+% hObject    handle to inputClearButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+set(handles.speedInput,'String','');
+set(handles.angleInput,'String','');
+set(handles.corInput,'String','');
+set(handles.wDistanceInput,'String','');
+set(handles.wHeightInput,'String','');
+set(handles.startingHeightInput,'String','');
+set(handles.ballRadiusInput,'String','');
+set(handles.ballMassInput,'String','');
+set(handles.airResInput,'String','');
