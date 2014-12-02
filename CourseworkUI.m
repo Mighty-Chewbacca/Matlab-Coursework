@@ -233,7 +233,7 @@ function inputClearButton_Callback(hObject, eventdata, handles)
 % hObject    handle to inputClearButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+% this function will be used to clear the input boxes -AM
 set(handles.speedInput,'String','');
 set(handles.angleInput,'String','');
 set(handles.corInput,'String','');
