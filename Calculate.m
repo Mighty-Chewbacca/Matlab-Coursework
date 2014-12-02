@@ -98,6 +98,57 @@ ylim([0 wallDistance ]);
 grid on;
 
 while(isProgramRunning == 1) % main simulation loop, will exit when simulation is over -AM
+    % inside the simulations main loop we want to start looking for input
+    % errors, this could be done outside as soon as they are actually input
+    % however i could not figure out the code for this -AM
+    
+    % here are the error catching statements for the input taken from the user!
+    % -AM
+    % Initial speed input checker -AM
+    if(initialSpeed <=0)
+        errorBox = msgbox('Incorrect speed entered, please make it positive','Incorrect input');
+        break;
+    end
+    % wall distance input checker -AM
+    if(wallDistance <=0)
+        errorBox = msgbox('Incorrect wall distance entered, please make it above 0','Incorrect input');
+        break;
+    end
+    % angle input checker -AM
+    if(angleOfMotion < 0 || angleOfMotion > 90)
+        errorBox = msgbox('Incorrect angle entered, please make it an angle between 0 and 90','Incorrect input');
+        break;
+    end
+    % CoR input checker -AM
+    if(coefficientOfRestitution < 0 || coefficientOfRestitution > 1)
+        errorBox = msgbox('Incorrect CoR entered, please make it between 0 and 1','Incorrect input');
+        break;
+    end
+    % wall height input checker -AM
+    if(wallHeight <= 0)
+        errorBox = msgbox('Incorrect wall height entered, please make it more than 0','Incorrect input');
+        break;
+    end
+    % air resistance input checker -AM
+    if(ballStartingHeight < 0)
+        errorBox = msgbox('Incorrect starting height entered, please make 0 or more','Incorrect input');
+        break;
+    end
+    % ball radius input checker -AM
+    if(ballRadius <= 0)
+        errorBox = msgbox('the radius of the ball must be above 0','Incorrect input');
+        break;
+    end
+    % air resistance input checker -AM
+    if(ballMass <= 0)
+        errorBox = msgbox('the mass must be above 0','Incorrect input');
+        break;
+    end
+    % air resistance input checker -AM
+    if(airResistance < 0)
+        errorBox = msgbox('air resistance must be 0 or above','Incorrect input');
+        break;
+    end
     
     % calculate the x positions using the current speed  -AM
     xPos = currentX + (timeStep * previousSpeedX);
