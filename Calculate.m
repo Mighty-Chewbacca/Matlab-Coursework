@@ -88,11 +88,6 @@ yPos = initialY;
 %tell it to draw to axes on the UI -AM
 axes(handles.ballPlot);
 
-% create the limits for the axes, allow them to change according to the
-% users values -AM
-xlim([0 wallDistance ]);
-ylim([0 wallDistance ]);
-
 % turn on the grid to show an accurate
 % representation of the balls movement -AM
 grid on;
@@ -150,6 +145,11 @@ while(isProgramRunning == 1) % main simulation loop, will exit when simulation i
         break;
     end
     
+    % create the limits for the axes, allow them to change according to the
+    % users values -AM
+    xlim([0 wallDistance ]);
+    ylim([0 wallDistance ]);
+    
     % calculate the x positions using the current speed  -AM
     xPos = currentX + (timeStep * previousSpeedX);
     yPos = currentY + (timeStep * previousSpeedY);
@@ -184,11 +184,11 @@ while(isProgramRunning == 1) % main simulation loop, will exit when simulation i
     line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
     % pause the calculations for long enough that you see the ball moving
     % across the screen -AM
-    pause(0.0001);
+    pause(1.000000);
 
     % if the x position and y positions are in line with the wall, and it
     % hasnt hit yet -AM
-    if(currentX >= wallDistance - ballRadius && currentY <= wallHeight - ballRadius && hasHitWall == 0)
+    if(currentX >= wallDistance - ballRadius && currentY <= wallHeight + ballRadius && hasHitWall == 0)
         % we have hit the wall
         % now need to run coefficient calculations
 
@@ -213,7 +213,7 @@ while(isProgramRunning == 1) % main simulation loop, will exit when simulation i
 
     %if the current x is at the wall but the y is NOT then it has flown
     %over and we should tell the user this -AM
-    if(currentX >= wallDistance - ballRadius && currentY > wallHeight - ballRadius)
+    if(currentX >= wallDistance - ballRadius && currentY > wallHeight + ballRadius)
         %make a message box appear to tell the user -AM
         errorBox = msgbox('The ball has flown over the wall!','Out of Bounds');
         % update all the text boxes to let the user know it has not hit the
