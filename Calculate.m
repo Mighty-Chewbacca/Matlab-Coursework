@@ -184,7 +184,7 @@ while(isProgramRunning == 1) % main simulation loop, will exit when simulation i
     line([wallDistance wallDistance], [-1 wallHeight], 'LineWidth', 4, 'color', 'g'); % wall ball is hitting
     % pause the calculations for long enough that you see the ball moving
     % across the screen -AM
-    pause(1.000000);
+    pause(0.000001);
 
     % if the x position and y positions are in line with the wall, and it
     % hasnt hit yet -AM
@@ -199,10 +199,11 @@ while(isProgramRunning == 1) % main simulation loop, will exit when simulation i
         set(handles.YPWReturn, 'String', num2str(currentY));
         set(handles.XVWBReturn, 'String', num2str(previousSpeedX));
         set(handles.YVWBReturn, 'String', num2str(previousSpeedY));
-
+        
         % apply coefficient formula to get new velocities -AM
+        % the x speed will be reveresed however the 
         previousSpeedX = -coefficientOfRestitution*(previousSpeedX);
-        previousSpeedY = -coefficientOfRestitution*(previousSpeedY);
+        previousSpeedY = coefficientOfRestitution*(previousSpeedY);
         % update the text boxes for speed after coefficient applied -AM
         set(handles.XVWAReturn, 'String', num2str(previousSpeedX));
         set(handles.YVWAReturn, 'String', num2str(previousSpeedY));
